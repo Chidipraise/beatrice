@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine, Bestie! 💃🏽💜</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deep-purple: #4b1d7a;
+            --light-purple: #6a0dad;
+            --lavender: #d9c6ff;
+            --cream: #f5f0ff;
+            --pink: #ffb6c1;
+            --gold: #ffd700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #d9c6ff 0%, #4b1d7a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            color: var(--deep-purple);
+            position: relative;
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 8s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 450px;
+            width: 100%;
+            z-index: 2;
+            position: relative;
+        }
+
+        .card {
+            background: rgba(245, 240, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px 35px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 
+                0 20px 60px rgba(75, 29, 122, 0.3),
+                0 0 0 1px rgba(106, 13, 173, 0.1),
+                inset 0 0 30px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(106, 13, 173, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--light-purple), transparent);
+        }
+
+        .header {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.8rem;
+            color: var(--light-purple);
+            text-shadow: 
+                2px 2px 0px var(--lavender),
+                4px 4px 0px rgba(106, 13, 173, 0.2);
+            margin-bottom: 10px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--deep-purple);
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .message-container {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(217, 198, 255, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(106, 13, 173, 0.1);
+        }
+
+        .message {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: var(--deep-purple);
+        }
+
+        .emoji {
+            font-size: 1.8rem;
+            margin: 0 5px;
+        }
+
+        .question-box {
+            background: linear-gradient(135deg, rgba(106, 13, 173, 0.1), rgba(217, 198, 255, 0.2));
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px dashed rgba(106, 13, 173, 0.3);
+            position: relative;
+        }
+
+        .question {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--light-purple);
+            margin-bottom: 10px;
+        }
+
+        .question-sub {
+            font-size: 1.1rem;
+            color: var(--deep-purple);
+            opacity: 0.9;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0 30px;
+            position: relative;
+            min-height: 120px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(75, 29, 122, 0.2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, var(--light-purple), #8a2be2);
+            color: white;
+        }
+
+        #yesBtn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(106, 13, 173, 0.3);
+        }
+
+        #noBtn {
+            background: rgba(203, 179, 255, 0.9);
+            color: var(--deep-purple);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(106, 13, 173, 0.2);
+            position: absolute;
+        }
+
+        #noBtn:hover {
+            background: rgba(217, 198, 255, 0.9);
+        }
+
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 25px;
+            border-radius: 25px;
+            margin-top: 30px;
+            border: 1px solid rgba(106, 13, 173, 0.2);
+        }
+
+        .countdown-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--light-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .countdown-display {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
+        }
+
+        .countdown-value {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--light-purple);
+            text-shadow: 2px 2px 0px rgba(217, 198, 255, 0.5);
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: var(--deep-purple);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .bestie-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--light-purple);
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 95%;
+            }
+            
+            .card {
+                padding: 30px 25px;
+            }
+            
+            .name {
+                font-size: 3.2rem;
+            }
+            
+            .question {
+                font-size: 1.7rem;
+            }
+            
+            .btn {
+                padding: 16px 30px;
+                min-width: 180px;
+                font-size: 1.2rem;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+                min-height: 180px;
+            }
+            
+            #noBtn {
+                position: relative;
+            }
+            
+            .countdown-value {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 25px 20px;
+                border-radius: 25px;
+            }
+            
+            .name {
+                font-size: 2.8rem;
+            }
+            
+            .message {
+                font-size: 1.2rem;
+            }
+            
+            .question {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 14px 25px;
+                min-width: 160px;
+                font-size: 1.1rem;
+            }
+            
+            .countdown-display {
+                gap: 15px;
+            }
+            
+            .countdown-item {
+                min-width: 60px;
+            }
+            
+            .countdown-value {
+                font-size: 1.9rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .name {
+                font-size: 2.3rem;
+            }
+            
+            .btn {
+                min-width: 140px;
+                padding: 12px 20px;
+            }
+            
+            .countdown-display {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                min-width: 50px;
+            }
+            
+            .countdown-value {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Touch device optimization */
+        @media (hover: none) and (pointer: coarse) {
+            .btn:hover {
+                transform: none;
+            }
+            
+            #yesBtn:active {
+                transform: scale(0.98);
+            }
+            
+            #noBtn {
+                position: relative;
+                margin-top: 20px;
+            }
+        }
+
+        /* Acceptance Page Styles */
+        .acceptance-page {
+            display: none;
+        }
+
+        .acceptance-container {
+            max-width: 550px;
+            width: 100%;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .celebration-card {
+            background: rgba(245, 240, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 
+                0 20px 60px rgba(75, 29, 122, 0.3),
+                0 0 0 1px rgba(106, 13, 173, 0.1),
+                inset 0 0 30px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(106, 13, 173, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .celebration-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--light-purple), var(--pink), transparent);
+        }
+
+        .celebration-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: var(--light-purple);
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px var(--lavender);
+        }
+
+        .photo-frame {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin: 25px 0;
+            border: 5px solid var(--light-purple);
+            box-shadow: 0 10px 30px rgba(75, 29, 122, 0.2);
+        }
+
+        .celebration-message {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: var(--deep-purple);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .highlight {
+            color: var(--light-purple);
+            font-weight: 600;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--light-purple);
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .back-home {
+            background: linear-gradient(135deg, var(--light-purple), #8a2be2);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .back-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.3);
+        }
+
+        .confetti {
+            position: fixed;
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 1000;
+            animation: confettiFall 3s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(to right, var(--light-purple), var(--pink));
+            z-index: 1000;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+    
+    <!-- Bestie Icon -->
+    <div class="bestie-icon">💃🏽</div>
+    
+    <!-- Main Proposal Card -->
+    <div class="container" id="proposalCard">
+        <div class="card">
+            <div class="header">
+                <div class="name">Beatrice 😄💜</div>
+                <div class="subtitle">Bestie Vibes • Forever Friends</div>
+            </div>
+            
+            <div class="message-container">
+                <p class="message">Bestieee <span class="emoji">💕</span></p>
+                <p class="message">Valentine is coming oo <span class="emoji">😌</span></p>
+                <p class="message">You're my favorite person to be extra with ✨</p>
+            </div>
+            
+            <div class="question-box">
+                <div class="question">Be my Valentine? 💜</div>
+                <div class="question-sub">Let's make this Valentine's Day unforgettable!</div>
+            </div>
+            
+            <div class="buttons-container">
+                <button class="btn" id="yesBtn">
+                    <i class="fas fa-heart"></i> Yes bestie 💃🏽
+                </button>
+                <button class="btn" id="noBtn">
+                    <i class="fas fa-times"></i> No 😜
+                </button>
+            </div>
+            
+            <div class="countdown-container">
+                <div class="countdown-title">
+                    <i class="fas fa-clock"></i> Countdown to Bestie Valentine's Day
+                </div>
+                <div class="countdown-display" id="countdownDisplay">
+                    <!-- Filled by JavaScript -->
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; padding: 15px; background: rgba(217, 198, 255, 0.3); border-radius: 15px; border: 1px solid rgba(106, 13, 173, 0.1);">
+                <div style="font-size: 0.9rem; color: var(--deep-purple);">
+                    <i class="fas fa-lock"></i> Bestie bond: Encrypted with laughter & memories
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Acceptance Page (Hidden by default) -->
+    <div class="container acceptance-page" id="acceptancePage">
+        <div class="acceptance-container">
+            <div class="celebration-card">
+                <div class="celebration-title">🥂 BESTIE VALENTINE 💜🥂</div>
+                
+                <!-- Replace with Beatrice's photo -->
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     alt="Bestie Celebration" 
+                     class="photo-frame">
+                
+                <div class="celebration-message">
+                    <p>Let's gooo! 🥂💜</p>
+                    <p>Valentines come and go, but</p>
+                    <p><span class="highlight">Besties are forever</span> 👊✨</p>
+                    <p style="margin-top: 20px;">No stress, just good vibes</p>
+                    <p>and way too much chocolate 🍫😄</p>
+                    <p style="margin-top: 20px;">Thanks for being the best "Val" ever 💜🫶</p>
+                    <p style="margin-top: 20px;">Can't wait to make memories</p>
+                    <p>that'll have us laughing for years! 😂💕</p>
+                </div>
+                
+                <div class="signature">
+                    — Kosi John 💜
+                </div>
+                
+                <button class="back-home" id="backHome">
+                    <i class="fas fa-redo"></i> Make Another Bestie Card
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating elements
+        function createFloatingElements() {
+            const elements = ['💜', '💕', '✨', '🫶', '👯‍♀️', '💃🏽', '🥂', '🎉', '😄', '💖'];
+            const colors = ['#6a0dad', '#d9c6ff', '#ffb6c1', '#ffd700'];
+            
+            for (let i = 0; i < 20; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+                element.style.color = colors[Math.floor(Math.random() * colors.length)];
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.fontSize = (Math.random() * 25 + 15) + 'px';
+                element.style.animationDelay = Math.random() * 5 + 's';
+                element.style.animationDuration = (Math.random() * 6 + 4) + 's';
+                
+                document.body.appendChild(element);
+            }
+        }
+        
+        // Scroll progress bar
+        function updateProgressBar() {
+            const progressBar = document.querySelector('.progress-bar');
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = `${scrollPercentage}%`;
+        }
+        
+        // Countdown to Valentine's Day
+        function updateCountdown() {
+            const now = new Date();
+            let valentinesYear = now.getFullYear();
+            
+            const valentinesDate = new Date(valentinesYear, 1, 14);
+            if (now > valentinesDate) {
+                valentinesYear++;
+            }
+            
+            const targetDate = new Date(valentinesYear, 1, 14);
+            const timeDiff = targetDate - now;
+            
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            
+            const countdownDisplay = document.getElementById('countdownDisplay');
+            if (countdownDisplay) {
+                countdownDisplay.innerHTML = `
+                    <div class="countdown-item">
+                        <div class="countdown-value">${days}</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value">${hours}</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value">${minutes}</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value">${seconds}</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                `;
+            }
+            
+            if (timeDiff < 0) {
+                if (countdownDisplay) {
+                    countdownDisplay.innerHTML = `
+                        <div style="font-size: 1.5rem; color: var(--light-purple); text-align: center; width: 100%;">
+                            Happy Bestie Valentine's Day! 💜🎉
+                        </div>
+                    `;
+                }
+            }
+        }
+        
+        // Confetti effect
+        function createConfetti() {
+            const confettiItems = ['💜', '💕', '✨', '🫶', '💃🏽', '🥂', '🎉', '😄'];
+            const colors = ['#6a0dad', '#d9c6ff', '#ffb6c1', '#ffd700', '#8a2be2'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.innerHTML = confettiItems[Math.floor(Math.random() * confettiItems.length)];
+                confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                confetti.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+        
+        // Yes button functionality
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            // Create confetti celebration
+            createConfetti();
+            
+            // Play celebration sound
+            const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-happy-crowd-laugh-464.mp3');
+            audio.volume = 0.3;
+            audio.play().catch(e => console.log("Audio play failed:", e));
+            
+            // Show acceptance page
+            setTimeout(() => {
+                document.getElementById('proposalCard').style.display = 'none';
+                document.getElementById('acceptancePage').style.display = 'block';
+                
+                // Add more floating elements
+                createFloatingElements();
+            }, 800);
+        });
+        
+        // No button functionality - intelligent escaping
+        const noBtn = document.getElementById('noBtn');
+        let escapeCount = 0;
+        
+        noBtn.addEventListener('mouseover', function() {
+            escapeCount++;
+            const button = this;
+            
+            const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+            const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+            
+            const buttonWidth = button.offsetWidth;
+            const buttonHeight = button.offsetHeight;
+            const maxX = vw - buttonWidth - 20;
+            const maxY = vh - buttonHeight - 20;
+            
+            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+            
+            button.style.position = 'fixed';
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+            
+            const messages = [
+                "Nice try bestie! 😜",
+                "Too slow! 💃🏽",
+                "Can't catch me! 🏃‍♀️",
+                "Over here! 👈",
+                "Say YES instead! 💜",
+                "You're persistent! 👏",
+                "Try again! ✨",
+                "Nope! 🙈",
+                "Bestie please! 😄",
+                "I'm too quick! ⚡"
+            ];
+            
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            button.innerHTML = `<i class="fas fa-times"></i> ${randomMsg}`;
+            
+            // Add purple glow
+            button.style.boxShadow = '0 0 20px rgba(106, 13, 173, 0.5)';
+            
+            setTimeout(() => {
+                button.innerHTML = '<i class="fas fa-times"></i> No 😜';
+                button.style.boxShadow = '';
+            }, 800);
+            
+            if (escapeCount > 5) {
+                button.style.fontSize = '0.9rem';
+                button.style.padding = '12px 25px';
+            }
+        });
+        
+        // Touch support for mobile
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.dispatchEvent(new Event('mouseover'));
+        });
+        
+        // Back home button
+        document.getElementById('backHome')?.addEventListener('click', function() {
+            document.getElementById('acceptancePage').style.display = 'none';
+            document.getElementById('proposalCard').style.display = 'block';
+            location.reload();
+        });
+        
+        // Audio setup
+        function setupAudio() {
+            const audio = document.createElement('audio');
+            audio.loop = true;
+            audio.volume = 0.2;
+            audio.innerHTML = `
+                <source src="https://assets.mixkit.co/music/preview/mixkit-clear-sky-479.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            `;
+            document.body.appendChild(audio);
+            
+            // Play audio on user interaction
+            document.addEventListener('click', function playAudioOnce() {
+                audio.play().catch(e => console.log("Audio autoplay prevented"));
+                document.removeEventListener('click', playAudioOnce);
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingElements();
+            updateCountdown();
+            setupAudio();
+            
+            setInterval(updateCountdown, 1000);
+            
+            setInterval(() => {
+                createFloatingElements();
+            }, 8000);
+            
+            window.addEventListener('scroll', updateProgressBar);
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'y' || e.key === 'Y') {
+                    document.getElementById('yesBtn').click();
+                }
+            });
+            
+            window.addEventListener('resize', function() {
+                noBtn.style.position = '';
+                noBtn.style.left = '';
+                noBtn.style.top = '';
+            });
+        });
+    </script>
+</body>
+</html>
